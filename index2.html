@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Get to Know You</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #1d1d1d;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    form {
+      background-color: #3d3d3d;
+      padding: 25px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+      width: 400px;
+    }
+
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: bold;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      border-radius: 5px;
+      border: 1px solid #888;
+      background-color: #2b2b2b;
+      color: white;
+    }
+
+    .checkbox-group, .radio-group {
+      margin-top: 10px;
+    }
+
+    .checkbox-group label, .radio-group label {
+      display: block;
+      font-weight: normal;
+    }
+
+    button {
+      width: 100%;
+      margin-top: 20px;
+      padding: 10px;
+      background-color: #f1c8f5;
+      color: black;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    button:hover {
+      background-color: #5947e6;
+    }
+  </style>
+</head>
+<body>
+
+  <form>
+    <h2>🌍 Get to Know You Form 🌍</h2>
+
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" placeholder="Enter your name" required>
+
+    <label for="age">Age:</label>
+    <input type="number" id="age" name="age" placeholder="Enter your age" required>
+
+    <label>Hobbies:</label>
+    <div class="checkbox-group">
+      <label><input type="checkbox" name="hobby" value="Reading"> Reading</label>
+      <label><input type="checkbox" name="hobby" value="Traveling"> Traveling</label>
+      <label><input type="checkbox" name="hobby" value="Gaming"> Gaming</label>
+      <label><input type="checkbox" name="hobby" value="Cooking"> Cooking</label>
+      <label><input type="checkbox" name="hobby" value="Music"> Music</label>
+    </div>
+
+    <label>Favorite time of day:</label>
+    <div class="radio-group">
+      <label><input type="radio" name="timeofday" value="Morning"> Morning</label>
+      <label><input type="radio" name="timeofday" value="Afternoon"> Afternoon</label>
+      <label><input type="radio" name="timeofday" value="Evening"> Evening</label>
+      <label><input type="radio" name="timeofday" value="Night"> Night</label>
+    </div>
+
+    <label for="countries">Countries you'd like to visit:</label>
+    <select id="countries" name="countries" multiple size="5">
+      <option value="Japan">Japan</option>
+      <option value="Italy">Italy</option>
+      <option value="Canada">Canada</option>
+      <option value="Brazil">Brazil</option>
+      <option value="Iceland">Iceland</option>
+    </select>
+
+    <label for="bio">Something about you:</label>
+    <textarea id="bio" name="bio" rows="4" placeholder="Write a short bio..."></textarea>
+
+    <button type="submit">Submit 🌟</button>
+  </form>
+
+  <script>
+    let name = document.getElementById('name');
+    name.addEventListener('input', function(e) {
+      window.alert("Hello, " + e.target.value + "! You're doing great typing one letter at a time ✨");
+    });
+
+    let age = document.getElementById('age');
+    age.addEventListener('input', function(e) {
+      if (e.target.value < 13) {
+        alert("You're quite young! Welcome anyway! 😊");
+      } else {
+        alert("Nice, age noted! 🕒");
+      }
+    });
+
+    let hobbies = document.getElementsByName('hobby');
+    hobbies.forEach(box => {
+      box.addEventListener('change', function(e) {
+        if (e.target.checked) {
+          alert("Oh! You like " + e.target.value + "? Cool choice! 😎");
+        }
+      });
+    });
+
+    let times = document.getElementsByName('timeofday');
+    times.forEach(radio => {
+      radio.addEventListener('change', function(e) {
+        alert("Favorite time of day: " + e.target.value + "! 🌞🌙");
+      });
+    });
+
+    let countries = document.getElementById('countries');
+    countries.addEventListener('change', function(e) {
+      let selected = Array.from(e.target.selectedOptions).map(option => option.value);
+      alert("Great picks! 🌏\nYou want to visit: " + selected.join(", "));
+    });
+
+    let bio = document.getElementById('bio');
+    let timer;
+    bio.addEventListener('input', function(e) {
+      clearTimeout(timer);
+      timer = setTimeout(function() {
+        alert("Nice! We got a peek into your story! 📖");
+      }, 1000);
+    });
+  </script>
+
+</body>
+</html>
